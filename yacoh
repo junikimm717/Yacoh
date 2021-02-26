@@ -6,7 +6,7 @@ shift
 DIR=$(dirname $(realpath $0))
 
 h() {
-    echo $DIR/readme.txt | less 
+    less $DIR/readme.txt 
 }
 
 setup() {
