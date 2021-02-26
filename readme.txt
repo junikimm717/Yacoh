@@ -4,7 +4,7 @@ Installation:
 - clone this repo.
 - cd into the repo
 - run ./yacoh setup
-(if u use zsh, do "./yacoh setup")
+(if u use zsh, do "./yacoh setup zsh")
 
 This is a bunch of scripts joined together under one unified program to aid the competitive programmer think about his algorithms and less about the setup.
 
