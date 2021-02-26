@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+VERB=$1
+shift
+
+DIR=$(dirname $(realpath $0))
+
+h() {
+    echo $DIR/readme.txt | less 
+}
+
+setup() {
+    FILE=~/.bashrc 
+    if [ "$1" = zsh ]; then
+        FILE=~/.zshrc
+    fi 
+    echo "export PATH=$DIR:\$PATH" >> $FILE 
+    export PATH=$DIR:$PATH 
+}
+
+create() {
+    TEMP=""
+    while true; do
+        if [ $# -eq 0 ]; then
+            exit
+        fi 
+        case "$1" in
+            -std)
+                TEMP="$DIR/template/cpp"
+                shift 
+            ;;
+            -java)
+                TEMP="$DIR/template/java"
+                shift 
+            ;;
+            *)
+                if [[ $TEMP == "" ]]; then
+                    echo "invalid args"
+                    exit 1
+                fi
+                cp -r $TEMP ./$1
+                cp -r $DIR/scripts/tests.py ./$1/yacoh/
+                shift 
+            ;;
+        esac
+    done
+}
+
+run() {
+    [ ! -d yacoh ] && exit 1
+    [ ! -f tests.json ] && exit 1
+    $PWD/yacoh/tests.py
+}
+
+download() {
+    [ ! -d yacoh ] && exit 1
+    $DIR/scripts/download.py
+}
+
+$VERB $@

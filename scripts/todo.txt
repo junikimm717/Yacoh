@@ -1,0 +1,7 @@
+KEEP CODE SIMPLE!!! STOP ADDING BLOAT
+
+Be able to create folders
+
+Be able to download stuff
+
+Be able to run tests
